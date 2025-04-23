@@ -3,6 +3,7 @@ import FuzzyText from './FuzzyText'
 import TiltedCard from './TiltedCard'
 import Counter from './Counter'
 import { useState, useEffect } from 'react'
+import Results from './Results'
 
 const questions = [
   {
@@ -105,22 +106,16 @@ function Quiz() {
   return (
     <div className='flex flex-col items-center justify-center h-full gap-14'>
       {showResults ? (
-        <div className='text-center text-white'>
-          <h1 className='text-5xl font-bold mb-6'>Resultados</h1>
-          <p className='text-2xl'>Puntaje: {points}%</p>
-          <button
-            className='mt-8 bg-indigo-600/30 px-6 py-3 rounded-lg text-white font-bold hover:bg-indigo-700/30 saturate-150 backdrop-blur-md transition cursor-pointer'
-            onClick={() => {
-              setCurrentQuestion(0)
-              setPoints(0)
-              setTime(60)
-              setShowResults(false)
-              setSelectedAnswer(null)
-            }}
-          >
-            Reiniciar Quiz
-          </button>
-        </div>
+        <Results
+          points={points}
+          onClick={() => {
+            setCurrentQuestion(0)
+            setPoints(0)
+            setTime(60)
+            setShowResults(false)
+            setSelectedAnswer(null)
+          }}
+        />
       ) : (
         <>
           <DecryptedText
