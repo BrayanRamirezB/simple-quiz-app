@@ -5,35 +5,7 @@ import Counter from './Counter'
 import { useState, useEffect } from 'react'
 import Results from './Results'
 
-const questions = [
-  {
-    question: 'What is the capital of France?',
-    correct: 'Paris',
-    answers: ['London', 'Berlin', 'Madrid', 'Paris']
-  },
-  {
-    question: 'What is the capital of Germany?',
-    correct: 'Berlin',
-    answers: ['London', 'Moscu', 'Rome', 'Berlin']
-  },
-  {
-    question: 'What is the capital of Italy?',
-    correct: 'Rome',
-    answers: ['Milan', 'Rome']
-  },
-  {
-    question: 'What is the capital of Spain?',
-    correct: 'Madrid',
-    answers: ['Barcelona', 'Valencia', 'Sevilla', 'Madrid']
-  },
-  {
-    question: 'What is the capital of México?',
-    correct: 'México City',
-    answers: ['Guadalajara', 'Monterrey', 'México City']
-  }
-]
-
-function Quiz() {
+function Quiz({ questions }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [points, setPoints] = useState(0)
   const [shuffledAnswers, setShuffledAnswers] = useState([])
@@ -54,7 +26,7 @@ function Quiz() {
     const originalAnswers = questions[currentQuestion].answers
     const shuffled = [...originalAnswers].sort(() => Math.random() - 0.5)
     setShuffledAnswers(shuffled)
-  }, [currentQuestion])
+  }, [currentQuestion, questions])
 
   // Contador de tiempo
   useEffect(() => {
@@ -77,7 +49,7 @@ function Quiz() {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [currentQuestion, isAnswering])
+  }, [currentQuestion, isAnswering, questions.length])
 
   const handleAnswerClick = (option) => {
     if (isAnswering) return
