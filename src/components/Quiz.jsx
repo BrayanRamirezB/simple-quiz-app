@@ -177,9 +177,9 @@ function Quiz() {
 
               if (isAnswering) {
                 if (isCorrect) {
-                  cardStyle = 'bg-green-600/30'
+                  cardStyle = 'bg-green-500/30'
                 } else if (isSelected && !isCorrect) {
-                  cardStyle = 'bg-red-600/30'
+                  cardStyle = 'bg-red-500/30'
                 }
               }
 
