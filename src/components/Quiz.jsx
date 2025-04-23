@@ -16,9 +16,9 @@ function Quiz({ questions }) {
 
   const bgColors = [
     'bg-blue-600/30',
-    'bg-violet-600/30',
-    'bg-pink-600/30',
-    'bg-yellow-600/30'
+    'bg-cyan-600/30',
+    'bg-pink-400/30',
+    'bg-yellow-400/30'
   ]
 
   // Mezclar respuestas al cargar nueva pregunta
