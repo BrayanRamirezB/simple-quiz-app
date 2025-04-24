@@ -3,10 +3,10 @@ import TiltedCard from './TiltedCard'
 
 const QuestionItem = ({ question, onDelete, onEdit }) => {
   return (
-    <li className='p-2 border rounded flex justify-between items-center w-2xl'>
-      <div>
-        <p className='font-semibold'>{question.question}</p>
-        <p className='text-sm text-gray-600'>
+    <li className='p-4 rounded flex justify-between items-center w-2xl bg-black/30 backdrop-blur-md saturate-150'>
+      <div className='flex flex-col gap-1 pointer-events-none'>
+        <p className='font-bold text-neutral-100'>{question.question}</p>
+        <p className='text-sm font-semibold text-neutral-300'>
           Opciones: {question.answers.join(', ')} | Correcta:{' '}
           <strong>{question.correct}</strong>
         </p>
