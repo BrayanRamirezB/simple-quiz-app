@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { toast } from '@pheralb/toast'
+import TiltedCard from './TiltedCard'
 
 export default function QuestionForm({
   onAddQuestion,
@@ -64,13 +65,17 @@ export default function QuestionForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className='mb-4 space-y-2'>
+    <form
+      onSubmit={handleSubmit}
+      className='mb-4 space-y-2 bg-black/30 p-8 rounded-xl shadow-lg saturate-150 backdrop-blur-md flex flex-col items-center justify-center gap-2 w-3xl'
+    >
       <input
-        className='border p-2 w-full'
+        className='border p-2 w-full mb-4'
         placeholder='Pregunta'
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
       />
+
       {answers.map((a, i) => (
         <input
           key={i}
@@ -86,20 +91,43 @@ export default function QuestionForm({
         value={correct}
         onChange={(e) => setCorrect(e.target.value)}
       />
-      <button
-        className='bg-blue-500 text-white px-4 py-2 rounded'
+
+      <TiltedCard
+        containerHeight='40px'
+        containerWidth='170px'
+        rotateAmplitude={12}
+        scaleOnHover={1.2}
+        displayOverlayContent={true}
+        className='bg-blue-500/40 rounded-lg font-bold hover:bg-blue-500/40 saturate-150 backdrop-blur-md cursor-pointer'
+        showTooltip={false}
         type='submit'
-      >
-        {editingQuestion ? 'Guardar cambios' : 'Agregar pregunta'}
-      </button>
+        overlayContent={
+          <div className='flex flex-col items-center justify-center h-full w-full'>
+            <p className='font-medium text-md text-neutral-100 whitespace-nowrap'>
+              {editingQuestion ? 'Guardar cambios' : 'Agregar pregunta'}
+            </p>
+          </div>
+        }
+      />
+
       {editingQuestion && (
-        <button
-          type='button'
-          className='ml-2 bg-gray-400 text-white px-4 py-2 rounded'
+        <TiltedCard
+          containerHeight='40px'
+          containerWidth='170px'
+          rotateAmplitude={12}
+          scaleOnHover={1.2}
+          displayOverlayContent={true}
+          className='bg-red-500/40 rounded-lg font-bold hover:bg-red-500/40 saturate-150 backdrop-blur-md cursor-pointer'
+          showTooltip={false}
           onClick={onCancelEdit}
-        >
-          Cancelar
-        </button>
+          overlayContent={
+            <div className='flex flex-col items-center justify-center h-full w-full'>
+              <p className='font-medium text-md text-neutral-100 whitespace-nowrap'>
+                Cancelar
+              </p>
+            </div>
+          }
+        />
       )}
     </form>
   )

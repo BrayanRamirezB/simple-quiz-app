@@ -1,8 +1,9 @@
 import React from 'react'
+import TiltedCard from './TiltedCard'
 
 const QuestionItem = ({ question, onDelete, onEdit }) => {
   return (
-    <li className='p-2 border rounded flex justify-between items-center'>
+    <li className='p-2 border rounded flex justify-between items-center w-2xl'>
       <div>
         <p className='font-semibold'>{question.question}</p>
         <p className='text-sm text-gray-600'>
@@ -11,18 +12,41 @@ const QuestionItem = ({ question, onDelete, onEdit }) => {
         </p>
       </div>
       <div className='flex gap-2'>
-        <button
-          className='bg-yellow-500 text-white px-2 py-1 rounded'
+        <TiltedCard
+          containerHeight='40px'
+          containerWidth='80px'
+          rotateAmplitude={12}
+          scaleOnHover={1.2}
+          displayOverlayContent={true}
+          className='bg-yellow-500/60 rounded-lg font-bold hover:bg-yellow-500/60 saturate-150 backdrop-blur-md cursor-pointer'
+          showTooltip={false}
           onClick={() => onEdit(question)}
-        >
-          Editar
-        </button>
-        <button
-          className='bg-red-500 text-white px-2 py-1 rounded'
+          overlayContent={
+            <div className='flex flex-col items-center justify-center h-full w-full'>
+              <p className='font-medium text-md text-neutral-100 whitespace-nowrap'>
+                Editar
+              </p>
+            </div>
+          }
+        />
+
+        <TiltedCard
+          containerHeight='40px'
+          containerWidth='80px'
+          rotateAmplitude={12}
+          scaleOnHover={1.2}
+          displayOverlayContent={true}
+          className='bg-red-500/60 rounded-lg font-bold hover:bg-red-500/60 saturate-150 backdrop-blur-md cursor-pointer'
+          showTooltip={false}
           onClick={() => onDelete(question.id)}
-        >
-          Eliminar
-        </button>
+          overlayContent={
+            <div className='flex flex-col items-center justify-center h-full w-full'>
+              <p className='font-medium text-md text-neutral-100 whitespace-nowrap'>
+                Eliminar
+              </p>
+            </div>
+          }
+        />
       </div>
     </li>
   )
