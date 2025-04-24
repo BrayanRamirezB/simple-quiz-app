@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { toast } from '@pheralb/toast'
 import TiltedCard from './TiltedCard'
+import FloatingInput from './FloatingInput'
 
 export default function QuestionForm({
   onAddQuestion,
@@ -69,25 +70,24 @@ export default function QuestionForm({
       onSubmit={handleSubmit}
       className='mb-4 space-y-2 bg-black/30 p-8 rounded-xl shadow-lg saturate-150 backdrop-blur-md flex flex-col items-center justify-center gap-2 w-3xl'
     >
-      <input
-        className='border p-2 w-full mb-4'
-        placeholder='Pregunta'
+      <FloatingInput
+        id='question'
+        label='Pregunta'
         value={question}
+        required={true}
         onChange={(e) => setQuestion(e.target.value)}
       />
 
       {answers.map((a, i) => (
-        <input
+        <FloatingInput
           key={i}
-          className='border p-2 w-full'
-          placeholder={`Respuesta ${i + 1}`}
+          label={`Respuesta ${i + 1}`}
           value={a}
           onChange={(e) => handleAnswerChange(i, e.target.value)}
         />
       ))}
-      <input
-        className='border p-2 w-full'
-        placeholder='Respuesta correcta'
+      <FloatingInput
+        label='Respuesta correcta'
         value={correct}
         onChange={(e) => setCorrect(e.target.value)}
       />
