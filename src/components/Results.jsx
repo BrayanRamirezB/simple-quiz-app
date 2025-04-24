@@ -1,7 +1,7 @@
 import TiltedCard from './TiltedCard'
 import DecryptedText from './DecryptedText'
 
-function Results({ points, onClick }) {
+function Results({ points, onClick, onFinish }) {
   return (
     <div className='relative p-20 box-border'>
       <div className='absolute inset-0 bg-black/40 rounded-4xl blur-lg'></div>
@@ -41,6 +41,24 @@ function Results({ points, onClick }) {
             <div className='flex flex-col items-center justify-center h-full w-full'>
               <p className='font-semibold text-2xl text-neutral-100'>
                 Reiniciar Quiz
+              </p>
+            </div>
+          }
+        />
+
+        <TiltedCard
+          containerHeight='120px'
+          containerWidth='320px'
+          rotateAmplitude={12}
+          scaleOnHover={1.2}
+          displayOverlayContent={true}
+          className='mt-8 bg-cyan-600/30 rounded-lg text-white font-bold hover:bg-cyan-700/30 saturate-150 backdrop-blur-md cursor-pointer'
+          showTooltip={false}
+          onClick={onFinish}
+          overlayContent={
+            <div className='flex flex-col items-center justify-center h-full w-full'>
+              <p className='font-semibold text-2xl text-neutral-100'>
+                Volver al Inicio
               </p>
             </div>
           }

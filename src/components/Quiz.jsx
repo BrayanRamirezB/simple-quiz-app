@@ -5,7 +5,7 @@ import Counter from './Counter'
 import { useState, useEffect } from 'react'
 import Results from './Results'
 
-function Quiz({ questions }) {
+function Quiz({ questions, onFinish }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [points, setPoints] = useState(0)
   const [shuffledAnswers, setShuffledAnswers] = useState([])
@@ -57,7 +57,7 @@ function Quiz({ questions }) {
 
     const isCorrect = option === questions[currentQuestion].correct
     if (isCorrect) {
-      setPoints((prev) => prev + (1 / questions.length) * 100)
+      setPoints((prev) => Math.round(prev + (1 / questions.length) * 100))
     }
 
     setTimeout(() => {
@@ -85,6 +85,7 @@ function Quiz({ questions }) {
             setShowResults(false)
             setSelectedAnswer(null)
           }}
+          onFinish={onFinish}
         />
       ) : (
         <>
@@ -121,6 +122,7 @@ function Quiz({ questions }) {
               <h2 className='font-bold text-2xl text-neutral-100'>
                 Puntuación
               </h2>
+
               <Counter
                 value={points}
                 places={[100, 10, 1]}
