@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { toast } from '@pheralb/toast'
 
 export default function QuestionForm({
   onAddQuestion,
@@ -29,12 +30,20 @@ export default function QuestionForm({
     const validAnswers = answers.filter((a) => a.trim() !== '')
 
     if (validAnswers.length < 2 || validAnswers.length > 4) {
-      alert('Debe haber entre 2 y 4 respuestas.')
+      toast.error({
+        text: 'Error',
+        description: 'Debe haber entre 2 y 4 respuestas.',
+        animationOnClose: 'swipe'
+      })
       return
     }
 
     if (!validAnswers.includes(correct)) {
-      alert('La respuesta correcta debe estar entre las opciones.')
+      toast.error({
+        text: 'Error',
+        description: 'La respuesta correcta debe estar entre las opciones.',
+        animationOnClose: 'swipe'
+      })
       return
     }
 

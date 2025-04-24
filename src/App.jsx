@@ -3,6 +3,7 @@ import Squares from './components/Squares'
 import Quiz from './components/Quiz'
 import QuizControls from './components/QuizControls'
 import CustomQuizManager from './components/CustomQuizManager'
+import { toast } from '@pheralb/toast'
 
 const defaultQuestions = [
   {
@@ -65,7 +66,11 @@ function App() {
 
   const handleStartCustomQuiz = () => {
     if (questions.length === 0) {
-      alert('Agrega al menos una pregunta.')
+      toast.error({
+        text: 'Error',
+        description: 'Agrega al menos una pregunta.',
+        animationOnClose: 'swipe'
+      })
       return
     }
     setIsPlaying(true)
