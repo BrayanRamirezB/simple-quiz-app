@@ -20,7 +20,8 @@ export default function TiltedCard({
   overlayContent = null,
   displayOverlayContent = false,
   className = '',
-  onClick = null
+  onClick = null,
+  type = 'button'
 }) {
   const ref = useRef(null)
   const x = useMotionValue(0)
@@ -83,6 +84,7 @@ export default function TiltedCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
+      type={type}
     >
       {showMobileWarning && (
         <div className='absolute top-4 text-center text-sm block sm:hidden'>
