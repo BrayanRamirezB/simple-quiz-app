@@ -21,14 +21,12 @@ function Quiz({ questions }) {
     'bg-yellow-400/30'
   ]
 
-  // Mezclar respuestas al cargar nueva pregunta
   useEffect(() => {
     const originalAnswers = questions[currentQuestion].answers
     const shuffled = [...originalAnswers].sort(() => Math.random() - 0.5)
     setShuffledAnswers(shuffled)
   }, [currentQuestion, questions])
 
-  // Contador de tiempo
   useEffect(() => {
     if (isAnswering) return
 
@@ -115,7 +113,7 @@ function Quiz({ questions }) {
               />
             </div>
 
-            <FuzzyText baseIntensity={0.2} fontSize='clamp(2rem, 18vw, 18rem)'>
+            <FuzzyText baseIntensity={0.2} fontSize='clamp(2rem, 14vw, 14rem)'>
               ?
             </FuzzyText>
 
