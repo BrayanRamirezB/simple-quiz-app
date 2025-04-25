@@ -33,8 +33,12 @@ function App() {
   const [editingQuestion, setEditingQuestion] = useState(null)
 
   const handleUseDefault = () => {
-    setQuestions(defaultQuestions)
-    setIsPlaying(true)
+    if (questions.length > 0) {
+      setIsPlaying(true)
+    } else {
+      setQuestions(defaultQuestions)
+      setIsPlaying(true)
+    }
   }
 
   const handleCustomStart = () => {
