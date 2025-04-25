@@ -38,8 +38,10 @@ function App() {
   }
 
   const handleCustomStart = () => {
+    if (questions.length === 0) {
+      setQuestions([]) // Asegurarse de que las preguntas estén inicializadas
+    }
     setCustomMode(true)
-    setQuestions([])
   }
 
   const handleAddOrUpdateQuestion = (newQuestion) => {
@@ -104,6 +106,35 @@ function App() {
     URL.revokeObjectURL(url)
   }
 
+  const handleImportQuiz = (event) => {
+    const file = event.target.files[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      try {
+        const importedQuestions = JSON.parse(e.target.result)
+        if (!Array.isArray(importedQuestions)) {
+          throw new Error('Invalid format')
+        }
+        setQuestions(importedQuestions)
+        toast.success({
+          text: 'Success',
+          description: 'Quiz imported successfully!',
+          animationOnClose: 'swipe'
+        })
+      } catch (error) {
+        toast.error({
+          text: 'Error',
+          description: 'Failed to import quiz. Please check the file format.',
+          animationOnClose: 'swipe'
+        })
+        console.error('Failed to import quiz:', error)
+      }
+    }
+    reader.readAsText(file)
+  }
+
   return (
     <div className='relative w-full h-screen overflow-hidden'>
       <div className='absolute top-0 left-0 w-full h-full'>
@@ -136,10 +167,18 @@ function App() {
                 onStartCustomQuiz={handleStartCustomQuiz}
                 onGoBack={handleGoBack} // Pasar la función handleGoBack como prop
                 onExportQuiz={handleExportQuiz}
+                handleImportQuiz={handleImportQuiz}
               />
             )}
           </>
         )}
+        <input
+          id='importQuizInput'
+          type='file'
+          accept='application/json'
+          onChange={handleImportQuiz}
+          className='hidden'
+        />
       </div>
     </div>
   )
