@@ -84,6 +84,26 @@ function App() {
     setCustomMode(false)
   }
 
+  const handleExportQuiz = () => {
+    if (questions.length === 0) {
+      toast.error({
+        text: 'Error',
+        description: 'Debe haber al menos una pregunta para exportar.',
+        animationOnClose: 'swipe'
+      })
+      return
+    }
+
+    const quizData = JSON.stringify(questions, null, 2)
+    const blob = new Blob([quizData], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'quiz.json'
+    link.click()
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <div className='relative w-full h-screen overflow-hidden'>
       <div className='absolute top-0 left-0 w-full h-full'>
@@ -115,6 +135,7 @@ function App() {
                 onEditQuestion={handleEditQuestion}
                 onStartCustomQuiz={handleStartCustomQuiz}
                 onGoBack={handleGoBack} // Pasar la función handleGoBack como prop
+                onExportQuiz={handleExportQuiz}
               />
             )}
           </>

@@ -11,7 +11,8 @@ const CustomQuizManager = ({
   onDeleteQuestion,
   onEditQuestion,
   onStartCustomQuiz,
-  onGoBack // Nueva prop para manejar el regreso a la pantalla principal
+  onGoBack,
+  onExportQuiz
 }) => {
   return (
     <div className='w-full max-w-3xl flex flex-col items-center justify-center p-4'>
@@ -29,7 +30,7 @@ const CustomQuizManager = ({
       <div className='flex flex-row items-center justify-between w-full'>
         <TiltedCard
           containerHeight='100px'
-          containerWidth='240px'
+          containerWidth='200px'
           rotateAmplitude={12}
           scaleOnHover={1.2}
           displayOverlayContent={true}
@@ -45,7 +46,23 @@ const CustomQuizManager = ({
 
         <TiltedCard
           containerHeight='100px'
-          containerWidth='240px'
+          containerWidth='200px'
+          rotateAmplitude={12}
+          scaleOnHover={1.2}
+          displayOverlayContent={true}
+          className='mt-8 bg-violet-500/40 rounded-lg font-bold hover:bg-violet-500/40 saturate-150 backdrop-blur-md cursor-pointer'
+          showTooltip={false}
+          onClick={onExportQuiz}
+          overlayContent={
+            <div className='flex flex-col items-center justify-center h-full w-full'>
+              <p className='font-semibold text-xl text-neutral-100'>Exportar</p>
+            </div>
+          }
+        />
+
+        <TiltedCard
+          containerHeight='100px'
+          containerWidth='200px'
           rotateAmplitude={12}
           scaleOnHover={1.2}
           displayOverlayContent={true}
