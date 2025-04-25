@@ -80,6 +80,10 @@ function App() {
     setIsPlaying(false)
   }
 
+  const handleGoBack = () => {
+    setCustomMode(false)
+  }
+
   return (
     <div className='relative w-full h-screen overflow-hidden'>
       <div className='absolute top-0 left-0 w-full h-full'>
@@ -110,6 +114,7 @@ function App() {
                 onDeleteQuestion={handleDeleteQuestion}
                 onEditQuestion={handleEditQuestion}
                 onStartCustomQuiz={handleStartCustomQuiz}
+                onGoBack={handleGoBack} // Pasar la función handleGoBack como prop
               />
             )}
           </>
