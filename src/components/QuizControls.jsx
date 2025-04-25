@@ -2,6 +2,7 @@ import React from 'react'
 import StartButton from './StartButton'
 import PlayIcon from '../icons/Play'
 import PlusIcon from '../icons/Plus'
+import ImportIcon from '../icons/ImportIcon'
 
 const QuizControls = ({ onUseDefault, onCustomStart }) => {
   return (
@@ -11,6 +12,12 @@ const QuizControls = ({ onUseDefault, onCustomStart }) => {
         label='Iniciar quiz'
         color='blue'
         icon={<PlayIcon className='size-20' />}
+      />
+      <StartButton
+        onClick={() => document.getElementById('importQuizInput').click()}
+        label='Importar quiz'
+        color='orange'
+        icon={<ImportIcon className='size-20' />}
       />
       <StartButton
         onClick={onCustomStart}
