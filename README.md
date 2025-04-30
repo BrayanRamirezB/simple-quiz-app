@@ -13,6 +13,9 @@ Simple Quiz App es una aplicación interactiva desarrollada con React y Vite que
 
 - **React**: Biblioteca para construir interfaces de usuario.
 - **Vite**: Herramienta de desarrollo rápida y ligera.
+- **ReactBits**: Librería de componentes de React.
+- **Tailwind CSS**: Framework CSS de código abierto.
+- **Toast (pheralb)**: Biblioteca de notificaciones.
 
 ## Cómo ejecutar el proyecto
 
